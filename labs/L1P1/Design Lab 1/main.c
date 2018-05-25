@@ -13,7 +13,6 @@ ISR(PCINT2_vect)
 {
 	if(PINC & 0x01)
 	{
-		printf("HIGH\n");
 		//Configure Fast PWM Mode
 		TCCR0A |= (1<<WGM00) | (1<<WGM01) | (1<<COM0B1) | (1<<COM0A1) ;
 		TCCR0B |= (1<<CS01) ;
@@ -22,7 +21,6 @@ ISR(PCINT2_vect)
 		OCR0B = 192;
 	}
 	else {
-		printf("LOW\n");
 		TCCR0A &= (0<<WGM00) | (0<<WGM01) | (0<<COM0B1) | (0<<COM0A1) ;
 		TCCR0B &= (0<<CS01) ;
 	}
@@ -41,7 +39,6 @@ int main(void)
 	
 	while(1)
 	{
-//		printf("hello\n");
 	}
 	 
 
