@@ -20,25 +20,25 @@
 */
 ISR(PCINT2_vect)
 {
-	static uint16_t t1;
-	static uint16_t t2;
-	static uint16_t delta_t;
-	static uint16_t t_high;
-	static uint16_t t_duty;
-	static uint16_t duty;
-	static uint8_t falling = 0;
-	static uint8_t first_rise = 1;
-	static uint16_t freq;
+//	static uint16_t t1;
+//	static uint16_t t2;
+//	static uint16_t delta_t;
+//	static uint16_t t_high;
+//	static uint16_t t_duty;
+//	static uint16_t duty;
+//	static uint8_t falling = 0;
+//	static uint8_t first_rise = 1;
+//	static uint16_t freq;
 		
 	if(PINC & 0x01) {
-		if(first_rise) {
-		/* This handles the first rise of a PWM */
+	/*	if(first_rise) {
+		// This handles the first rise of a PWM
 			t1 = ((uint16_t)TCNT1L) | ((uint16_t)TCNT1H<<8);
 			first_rise = 0;
 			falling = 1;
 		}
 		else if(!falling) {
-		/* this handles the second rise of a period of a PWM */
+		// this handles the second rise of a period of a PWM 
 			t2 = ((uint16_t)TCNT1L) | ((uint16_t)TCNT1H<<8);
 			delta_t = t2 - t1;
 			t_duty = t_high - t1;
@@ -49,18 +49,23 @@ ISR(PCINT2_vect)
 			_delay_ms(2500);
 		}
 		else {
-		/*	This handles if an interrupt is missed
-			This will reset the pulse we are measuring */
+		//	This handles if an interrupt is missed
+		//	This will reset the pulse we are measuring 
 			first_rise = 1;
 			falling = 0;
 			
-		}
+		}*/
+	printf("HIGH\n");
 	}
-	else if(falling){
-	/* This handles the falling edge of the PWM period */
+	else {
+		printf("LOW\n");
+	}
+/*	else if(falling){
+	// This handles the falling edge of the PWM period 
 		t_high = ((uint16_t)TCNT1L) | ((uint16_t)TCNT1H<<8);
 		falling = 0;
 	}
+*/
 }
 
 int main(void)
